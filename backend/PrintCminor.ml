@@ -196,24 +196,17 @@ let rec print_stmt p s =
       fprintf p "@[<hv 2>(Sstore %s %a@ %a)@]"
               (name_of_chunk chunk) print_expr a1 print_expr a2
   | Scall(None, sg, e1, el) ->
-      fprintf p "@[<hv 2>%a@,(@[<hov 0>%a@])@ : @[<hov 0>%a@];@]"
+      fprintf p "@[<v 2>(Scall %a %a)@]" 
                 print_expr e1
                 print_expr_list (true, el)
-                print_sig sg
-(*  | Scall(Some id, sg, e1, el) ->
-      fprintf p "@[<hv 2>%s =@ %a@,(@[<hov 0>%a@])@] : @[<hov 0>%a;@]"
+                (* print_sig sg *)
+  | Scall(Some id, sg, e1, el) ->
+      fprintf p "@[<v 2>(Scall %s %a %a)@]"  
                 (ident_name id)
                 print_expr e1
                 print_expr_list (true, el)
-                print_sig sg
-*)
+                (* print_sig sg *)
 
- | Scall(Some id, sg, e1, el) ->
-      fprintf p "@[<hv 2>TEEEEEEEEEEEEEEEEEEEEST@]"
-                (ident_name id)
-                print_expr e1
-                print_expr_list (true, el)
-                print_sig sg
   | Stailcall(sg, e1, el) ->
       fprintf p "@[<hv 2>tailcall %a@,(@[<hov 0>%a@])@ : @[<hov 0>%a@];@]"
                 print_expr e1
