@@ -150,7 +150,7 @@ let rec print_expr_list p (first, rl) =
   match rl with
   | [] -> ()
   | r :: rl ->
-      if not first then fprintf p ",@ ";
+      if not first then fprintf p " ";
       expr p r;
       print_expr_list p (false, rl)
 
@@ -196,12 +196,12 @@ let rec print_stmt p s =
       fprintf p "@[<hv 2>(Sstore %s %a@ %a)@]"
               (name_of_chunk chunk) print_expr a1 print_expr a2
   | Scall(None, sg, e1, el) ->
-      fprintf p "@[<v 2>(Scall %a %a)@]" 
+      fprintf p "@[<v 2>(Scall %a (%a))@]" 
                 print_expr e1
                 print_expr_list (true, el)
                 (* print_sig sg *)
   | Scall(Some id, sg, e1, el) ->
-      fprintf p "@[<v 2>(Scall %s %a %a)@]"  
+      fprintf p "@[<v 2>(Scall %s %a (%a))@]"  
                 (ident_name id)
                 print_expr e1
                 print_expr_list (true, el)
