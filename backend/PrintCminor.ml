@@ -200,8 +200,16 @@ let rec print_stmt p s =
                 print_expr e1
                 print_expr_list (true, el)
                 print_sig sg
-  | Scall(Some id, sg, e1, el) ->
+(*  | Scall(Some id, sg, e1, el) ->
       fprintf p "@[<hv 2>%s =@ %a@,(@[<hov 0>%a@])@] : @[<hov 0>%a;@]"
+                (ident_name id)
+                print_expr e1
+                print_expr_list (true, el)
+                print_sig sg
+*)
+
+ | Scall(Some id, sg, e1, el) ->
+      fprintf p "@[<hv 2>TEEEEEEEEEEEEEEEEEEEEST@]"
                 (ident_name id)
                 print_expr e1
                 print_expr_list (true, el)
